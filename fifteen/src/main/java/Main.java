@@ -8,6 +8,7 @@ public class Main
         makeRandomArray(table);
 
         char[][] uniCodeTable = new char[10][10];
+        makeUniCodeTable( uniCodeTable );
 
 
         Scanner reader = new Scanner(System.in);
