@@ -7,6 +7,9 @@ public class Main
         int[][] table = new int[4][4];
         makeRandomArray(table);
 
+        char[][] uniCodeTable = new char[10][10];
+
+
         Scanner reader = new Scanner(System.in);
         boolean endGame = false;
 
@@ -74,16 +77,20 @@ public class Main
     static void makeRandomArray ( int[][] table) {
 
     }
+    static void makeUniCodeTable ( char[][] table ) {
+
+    }
 
     static void choose (int[][] table , int row , int col) {
 
     }
 
-    static void print (int[][] table , int cursorRow , int cursorCol) {
-
+    static void print (int[][] table , int cursorRow , int cursorCol)
+    {
     }
 
     static boolean checkSort (int[][] tabe) {
         return false;
     }
+
 }
