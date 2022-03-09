@@ -7,7 +7,7 @@ public class Main
         int[][] table = new int[4][4];
         makeRandomArray(table);
 
-        char[][] uniCodeTable = new char[10][10];
+        String [][] uniCodeTable = new String[10][10];
         makeUniCodeTable( uniCodeTable );
 
 
@@ -78,7 +78,8 @@ public class Main
     static void makeRandomArray ( int[][] table) {
 
     }
-    static void makeUniCodeTable ( char[][] table ) {
+    static void makeUniCodeTable ( String[][] table )
+    {
 
     }
 
