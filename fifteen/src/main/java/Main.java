@@ -22,16 +22,16 @@ public class Main
             switch (ch.charAt(0))
             {
                 case 'w' :
-                    move.onUpKeyPressed( col );
+                    Move.onUpKeyPressed( col );
                     break;
                 case 's' :
-                    move.onDownKeyPressed( col );
+                    Move.onDownKeyPressed( col );
                     break;
                 case 'a' :
-                    move.onRightKeyPressed( row );
+                    Move.onRightKeyPressed( row );
                     break;
                 case 'd' :
-                    move.onLeftKeyPressed( row );
+                    Move.onLeftKeyPressed( row );
                 case 'p' :
                     choose(table , row , col);
                     break;
@@ -48,7 +48,7 @@ public class Main
         return;
     }
 
-    public class move
+    public class Move
     {
         static void onLeftKeyPressed ( int row )
         {
@@ -84,6 +84,6 @@ public class Main
     }
 
     static boolean checkSort (int[][] tabe) {
-
+        return false;
     }
 }
