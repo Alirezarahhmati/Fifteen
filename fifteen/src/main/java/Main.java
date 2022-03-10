@@ -26,22 +26,24 @@ public class Main
             switch (ch.charAt(0))
             {
                 case 'w' :
-                    Move.onUpKeyPressed( col );
+                    row = Move.onUpKeyPressed( row );
                     break;
                 case 's' :
-                    Move.onDownKeyPressed( col );
-                    break;
-                case 'a' :
-                    Move.onRightKeyPressed( row );
+                    row = Move.onDownKeyPressed( row );
                     break;
                 case 'd' :
-                    Move.onLeftKeyPressed( row );
+                    col = Move.onRightKeyPressed( col );
+                    break;
+                case 'a' :
+                    col = Move.onLeftKeyPressed( col );
+                    break;
                 case 'p' :
                     choose(table , row , col);
                     break;
                 case 'e' :
                     return;
             }
+            System.out.println("row : " + row + " column : " + col);
 
             endGame = checkSort( table );
         }
@@ -54,24 +56,44 @@ public class Main
 
     public class Move
     {
-        static void onLeftKeyPressed ( int row )
+        static int onLeftKeyPressed ( int column )
         {
-
+            if ( column == 0 ) {
+                column = 3;
+            } else {
+                column--;
+            }
+            return column;
         }
 
-        static void onRightKeyPressed ( int row )
+        static int onRightKeyPressed ( int column )
         {
-
+            if ( column == 3 ) {
+                column = 0;
+            } else {
+                column++;
+            }
+            return column;
         }
 
-        static void onUpKeyPressed ( int column )
+        static int onUpKeyPressed ( int row )
         {
-
+            if ( row == 0 ) {
+                row = 3;
+            } else {
+                row--;
+            }
+            return row;
         }
 
-        static void onDownKeyPressed ( int column )
+        static int onDownKeyPressed ( int row )
         {
-
+            if ( row == 3 ) {
+                row = 0;
+            } else {
+                row++;
+            }
+            return row;
         }
     }
 
@@ -217,8 +239,32 @@ public class Main
         }
     }
 
-    static void choose (int[][] table , int row , int col) {
+    static void choose (int[][] table , int row , int col)
+    {
+        Scanner reader = new Scanner(System.in);
+        String ch = reader.next();
 
+        int newRow = row;
+        int newCol = col;
+
+        switch (ch.charAt(0)) {
+            case 'w' :
+                newRow = Move.onUpKeyPressed( row );
+                break;
+            case 's' :
+                newRow = Move.onDownKeyPressed( row );
+                break;
+            case 'd' :
+                newCol = Move.onRightKeyPressed( col );
+                break;
+            case 'a' :
+                newCol = Move.onLeftKeyPressed( col );
+                break;
+        }
+
+        int x = table[newRow][newCol];
+        table[newRow][newCol] = table[row][col];
+        table[row][col] = x;
     }
 
     static void print (int[][] table , String[][] uniTable , int cursorRow , int cursorCol) {
