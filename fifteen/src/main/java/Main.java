@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Main
@@ -17,6 +18,8 @@ public class Main
         int col = 0;
         int row = 0;
 
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         print( table , uniCodeTable , row , col );
 
         while ( !endGame )
@@ -43,7 +46,9 @@ public class Main
                 case 'e' :
                     return;
             }
-            System.out.println("row : " + row + " column : " + col);
+            makeUniCodeTable( uniCodeTable );
+            print( table , uniCodeTable , row , col );
+
 
             endGame = checkSort( table );
         }
@@ -267,12 +272,59 @@ public class Main
         table[row][col] = x;
     }
 
-    static void print (int[][] table , String[][] uniTable , int cursorRow , int cursorCol) {
+    static void print (int[][] table , String[][] uniTable , int cursorRow , int cursorCol)
+    {
+        int x = 0 , y = 0;
+        for (int i = 2; i < 17; i += 4) {
+            for (int j = 4; j < 33; j += 8) {
+                int num = table[x][y++];
+                if (num != 0) {
+                    uniTable[i][j] = Integer.toString(num);
+                }
+                if (num / 10 >= 1) {
+                    uniTable[i][j+1] = "";
+                }
+            }
+            y = 0;
+            x++;
+        }
 
+        x = cursorRow * 4;
+        y = cursorCol * 8;
+        uniTable[x+1][y+2] = "\u256D";
+        uniTable[x+1][y+6] = "\u256E";
+        uniTable[x+3][y+2] = "\u2570";
+        uniTable[x+3][y+6] = "\u256F";
+
+        for (int i = 0; i < 17; i++) {
+            for (int i1 = 0; i1 < 33; i1++) {
+                System.out.print(uniTable[i][i1]);
+            }
+            System.out.println();
+        }
+
+        uniTable[x+1][y+2] = " ";
+        uniTable[x+1][y+6] = " ";
+        uniTable[x+3][y+2] = " ";
+        uniTable[x+3][y+6] = " ";
     }
 
-    static boolean checkSort (int[][] tabe) {
-        return false;
+    static boolean checkSort (int[][] tabe)
+    {
+        int x = 1;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (x != tabe[i][j]) {
+                    return false;
+                }
+                if (x == 15 ) {
+                    x = 0;
+                }else {
+                    x++;
+                }
+            }
+        }
+        return true;
     }
 
 }
