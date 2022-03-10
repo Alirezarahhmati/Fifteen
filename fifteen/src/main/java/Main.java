@@ -17,7 +17,7 @@ public class Main
         int col = 0;
         int row = 0;
 
-        print( table , row , col );
+        print( table , uniCodeTable , row , col );
 
         while ( !endGame )
         {
@@ -46,7 +46,7 @@ public class Main
             endGame = checkSort( table );
         }
 
-        print( table , row , col );
+        print( table , uniCodeTable , row , col );
         System.out.println("enter to exite.");
 
         return;
@@ -87,8 +87,8 @@ public class Main
 
     }
 
-    static void print (int[][] table , int cursorRow , int cursorCol)
-    {
+    static void print (int[][] table , String[][] uniTable , int cursorRow , int cursorCol) {
+
     }
 
     static boolean checkSort (int[][] tabe) {
