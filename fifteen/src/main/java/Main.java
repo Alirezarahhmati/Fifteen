@@ -69,7 +69,7 @@ public class Main
 
         print( table , uniCodeTable , row , col );
         System.out.println("\n\n   **********************************");
-        System.out.println("   **    congrajolation you win.    **");
+        System.out.println("   **    congratulation you win.    **");
         System.out.println("   ***********************************");
         System.out.println("\n\n\n  press e and enter to exite.");
         reader.next();
