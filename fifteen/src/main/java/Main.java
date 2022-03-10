@@ -20,6 +20,16 @@ public class Main
 
         System.out.print("\033[H\033[2J");
         System.out.flush();
+
+        System.out.println("\n\n\n");
+        System.out.print( "               help :" +
+                "\n               for move use 'w'/'s'/'d'/'a' \n               for put and move a number use 'p' + 'w'/'s'/'a'/'d'  \n                    for example pa move number to up. " +
+                "\n               and for exite the game use 'e'  \n\n      press 'c' and enter to continue.");
+        reader.next();
+
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         print( table , uniCodeTable , row , col );
 
         while ( !endGame )
@@ -29,23 +39,27 @@ public class Main
             switch (ch.charAt(0))
             {
                 case 'w' :
-                    row = Move.onUpKeyPressed( row );
+                    row = onUpKeyPressed( row );
                     break;
                 case 's' :
-                    row = Move.onDownKeyPressed( row );
+                    row = onDownKeyPressed( row );
                     break;
                 case 'd' :
-                    col = Move.onRightKeyPressed( col );
+                    col = onRightKeyPressed( col );
                     break;
                 case 'a' :
-                    col = Move.onLeftKeyPressed( col );
+                    col = onLeftKeyPressed( col );
                     break;
                 case 'p' :
-                    choose(table , row , col);
+                    if (ch.length() != 1) {
+                        choose(table, row, col , ch.charAt(1));
+                    }
                     break;
                 case 'e' :
                     return;
             }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             makeUniCodeTable( uniCodeTable );
             print( table , uniCodeTable , row , col );
 
@@ -54,13 +68,15 @@ public class Main
         }
 
         print( table , uniCodeTable , row , col );
-        System.out.println("enter to exite.");
+        System.out.println("\n\n   **********************************");
+        System.out.println("   **    congrajolation you win.    **");
+        System.out.println("   ***********************************");
+        System.out.println("\n\n\n  press e and enter to exite.");
+        reader.next();
 
         return;
     }
-
-    public class Move
-    {
+    ///// Move class
         static int onLeftKeyPressed ( int column )
         {
             if ( column == 0 ) {
@@ -100,7 +116,6 @@ public class Main
             }
             return row;
         }
-    }
 
     static void makeRandomArray ( int[][] table)
     {
@@ -244,32 +259,39 @@ public class Main
         }
     }
 
-    static void choose (int[][] table , int row , int col)
+    static void choose (int[][] table , int row , int col , char ch)
     {
-        Scanner reader = new Scanner(System.in);
-        String ch = reader.next();
-
         int newRow = row;
         int newCol = col;
 
-        switch (ch.charAt(0)) {
+        switch (ch) {
             case 'w' :
-                newRow = Move.onUpKeyPressed( row );
+                if (row != 0) {
+                    newRow = row - 1;
+                }
                 break;
             case 's' :
-                newRow = Move.onDownKeyPressed( row );
+                if (row != 3) {
+                    newRow = row + 1;
+                }
                 break;
             case 'd' :
-                newCol = Move.onRightKeyPressed( col );
+                if (col != 3) {
+                    newCol = col + 1;
+                }
                 break;
             case 'a' :
-                newCol = Move.onLeftKeyPressed( col );
+                if (col != 0) {
+                    newCol = col - 1;
+                }
                 break;
         }
 
-        int x = table[newRow][newCol];
-        table[newRow][newCol] = table[row][col];
-        table[row][col] = x;
+        if (table[newRow][newCol] == 0) {
+            int x = table[newRow][newCol];
+            table[newRow][newCol] = table[row][col];
+            table[row][col] = x;
+        }
     }
 
     static void print (int[][] table , String[][] uniTable , int cursorRow , int cursorCol)
