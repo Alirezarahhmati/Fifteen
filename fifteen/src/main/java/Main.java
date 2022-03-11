@@ -22,14 +22,13 @@ public class Main
         System.out.flush();
 
         System.out.println("\n\n\n");
-        System.out.print("""
-                         help :
-                         for move use 'w'/'s'/'d'/'a'\s
-                         for put and move a number use 'p' + 'w'/'s'/'a'/'d' \s
-                              for example pa move number to up.\s
-                         and for exite the game use 'e' \s
-
-                press 'c' and enter to continue.""".indent(6));
+        System.out.print("" +
+                         "\thelp :\n" +
+                         "\tfor move use 'w'/'s'/'d'/'a'\n" +
+                         "\tfor put and move a number use 'p' + 'w'/'s'/'a'/'d'\n" +
+                              "\tfor example pa move number to up.\n" +
+                         "\tand for exite the game use 'e' \n\n" +
+                "\tpress 'c' and enter to continue.");
         reader.next();
 
         System.out.print("\033[H\033[2J");
