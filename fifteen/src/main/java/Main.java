@@ -22,9 +22,14 @@ public class Main
         System.out.flush();
 
         System.out.println("\n\n\n");
-        System.out.print( "               help :" +
-                "\n               for move use 'w'/'s'/'d'/'a' \n               for put and move a number use 'p' + 'w'/'s'/'a'/'d'  \n                    for example pa move number to up. " +
-                "\n               and for exite the game use 'e'  \n\n      press 'c' and enter to continue.");
+        System.out.print("""
+                         help :
+                         for move use 'w'/'s'/'d'/'a'\s
+                         for put and move a number use 'p' + 'w'/'s'/'a'/'d' \s
+                              for example pa move number to up.\s
+                         and for exite the game use 'e' \s
+
+                press 'c' and enter to continue.""".indent(6));
         reader.next();
 
         System.out.print("\033[H\033[2J");
@@ -74,7 +79,6 @@ public class Main
         System.out.println("\n\n\n  press e and enter to exite.");
         reader.next();
 
-        return;
     }
     ///// Move class
         static int onLeftKeyPressed ( int column )
@@ -210,44 +214,18 @@ public class Main
                 {
                     if ( j == 0 )
                     {
-                        if(i == 0 || i == (n-1))
-                        {
-                            continue ;
-                        }
-                        else if ( i % c == 0 )
-                        {
-                            tMat[i][j] = "\u251c" ;
-                        }
-                        else
+                        if(i != n - 1)
                         {
                             tMat[i][j] = "\u2502" ;
                         }
                     }
                     else if (j == (N-1) )
                     {
-                        if (i==0 || i == (n-1) )
-                        {
-                            continue ;
-                        }
-                        else if( i%c == 0 )
-                        {
-                            tMat[i][j] = "\u2524" ;
-                        }
-                        else
-                        {
-                            tMat[i][j] = "\u2502" ;
-                        }
+                        tMat[i][j] = "\u2502" ;
                     }
                     else
                     {
-                        if(i%c == 0 )
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            tMat[i][j] = "\u2502" ;
-                        }
+                        tMat[i][j] = "\u2502" ;
                     }
                 }
                 else
